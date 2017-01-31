@@ -61,8 +61,10 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
           --region $AWS_REGION \
           --name $STACK_NAME \
           --file-template ./work/aws-env-sysadmin.cfn \
-          --override-keys VpcId PublicCidrBlock InternalGatewayId InternetGatewayId PrivateCidrBlock KeyName \
-          --override-values $AWS_VPC_ID $AWS_PUBLIC_CIDR $AWS_VGW_ID $AWS_IGW_ID $AWS_PRIVATE_CIDR $AWS_KEYPAIR_NAME
+          --override-keys \
+            VpcId PublicCidrBlock InternalGatewayId InternetGatewayId PrivateCidrBlock KeyName \
+          --override-values \
+            $AWS_VPC_ID $AWS_PUBLIC_CIDR $AWS_VGW_ID $AWS_IGW_ID $AWS_PRIVATE_CIDR $AWS_KEYPAIR_NAME
         ```
    * Get the list of IPs. We'll use the output from the below script to update `/etc/hosts`
 
