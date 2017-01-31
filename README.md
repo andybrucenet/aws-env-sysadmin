@@ -33,16 +33,26 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
         AWS_PRIVATE_CIDR='YOUR_PRIVATE_SUBNET'
         AWS_KEYPAIR_NAME='aws-env-sysadmin'
         ```
+     _Note:_ For convenience, I save off these settings in a single shell script with values specific to my environment.
    * Load the variables using dynamic lookup. Note in the below we assume an alias named aws-cli which will properly resolve to the correct `aws` command. (We do this because we use a Docker wrapper over the AWS CLI in our environment.)
 
         ```
         AWS_VPC_ID=$(aws-cli ec2 describe-vpcs --filter Name=tag:Name,Values=$AWS_VPC_NAME --query 'Vpcs[].VpcId' --output text | sed -e 's#\s##g')
-        echo $AWS_VPC_ID
+        echo "AWS_VPC_ID='$AWS_VPC_ID'"
         AWS_VGW_ID=$(aws-cli ec2 describe-vpn-gateways --filter Name=tag:Name,Values=$AWS_VGW_NAME --query 'VpnGateways[].VpnGatewayId' --output text | sed -e 's#\s##g')
-        echo $AWS_VGW_ID
+        echo "AWS_VGW_ID='$AWS_VGW_ID'"
         AWS_IGW_ID=$(aws-cli ec2 describe-internet-gateways --filter Name=tag:Name,Values=$AWS_IGW_NAME --query 'InternetGateways[].InternetGatewayId' --output text | sed -e 's#\s##g')
-        echo $AWS_IGW_ID
+        echo "AWS_IGW_ID='$AWS_IGW_ID'"
         ```
+     _Note:_ For convenience, I combined the above with the variable settings from the previous step...now I simply `source` in a single shell script and I get all of my settings ready to go. Here's a standard run:
+
+        ```
+        CloudraticSolutionsLLCs-MacBook-Pro:aws-env-sysadmin l.abruce$ source aws-env-sysadmin
+        AWS_VPC_ID='vpc-d8d6d6bd'
+        AWS_VGW_ID='vgw-32a07e2c'
+        AWS_IGW_ID='igw-a3c6b4c6'
+        ```
+     And we should be ready to go with the above values.
    * Create the stack. The following users our nifty Docker wrapper in conjunction with a python wrapper over the AWS cloudformation calls.
      First, we need to compress the template - as it is, it is slightly above the 51,200 character limit imposed by AWS. We use a tool called `cfn-check` (see https://www.npmjs.com/package/cfn-check); this tool not only verifies AWS CloudFormation templates, it also *compresses* the output.
 
