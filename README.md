@@ -44,6 +44,14 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
         echo $AWS_IGW_ID
         ```
    * Create the stack. The following users our nifty Docker wrapper in conjunction with a python wrapper over the AWS cloudformation calls.
+     First, we need to compress the template - as it is, it is slightly above the 51,200 character limit imposed by AWS. We use a tool called `cfn-check` (see https://www.npmjs.com/package/cfn-check); this tool not only verifies AWS CloudFormation templates, it also *compresses* the output.
+
+        ```
+        mkdir -p ./work
+        cfn-check --compact ./cfn/aws-sysadmin-test-env.cfn \
+          > ./work/aws-sysadmin-test-env.cfn
+        ```
+        Now we can do the actual stack build using AWS CLI:
 
         ```
         DOCKER_OPTS="-v $(pwd -P):/local:ro -w /local" \
@@ -52,7 +60,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
           --option create \
           --region $AWS_REGION \
           --name $STACK_NAME \
-          --file-template ./cfn/aws-env-sysadmin.cfn \
+          --file-template ./work/aws-env-sysadmin.cfn \
           --override-keys VpcId PublicCidrBlock InternalGatewayId InternetGatewayId PrivateCidrBlock KeyName \
           --override-values $AWS_VPC_ID $AWS_PUBLIC_CIDR $AWS_VGW_ID $AWS_IGW_ID $AWS_PRIVATE_CIDR $AWS_KEYPAIR_NAME
         ```
