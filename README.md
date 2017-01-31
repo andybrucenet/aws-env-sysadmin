@@ -25,7 +25,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
      To load in the values, just `source` the script. Here's a sample run:
 
         ```
-        CloudraticSolutionsLLCs-MacBook-Pro:aws-env-sysadmin l.abruce$ source ~/bin/aws-env-sysadmin.sh
+        $ source ~/bin/aws-env-sysadmin.sh
         AWS_VPC_ID='vpc-d8d6d6bd'
         AWS_VGW_ID='vgw-32a07e2c'
         AWS_IGW_ID='igw-a3c6b4c6'
@@ -58,7 +58,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
    * Get the list of IPs. We created a gnarly little script that gets this information directly from AWS; we provide a script for this to update `/etc/hosts`. Here's a sample run:
 
         ```
-        CloudraticSolutionsLLCs-MacBook-Pro:aws-env-sysadmin l.abruce$ ./aws-env-sysadmin-hosts.sh
+        $ ./aws-env-sysadmin-hosts.sh
         172.20.241.4 Ubuntu
         172.20.241.9 W2K12
         172.20.197.4 Oob
