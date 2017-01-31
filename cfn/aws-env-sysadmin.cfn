@@ -391,10 +391,10 @@
       }
     },
 
-    "iampS3LmilSetup": {
+    "iampS3Setup": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "S3LmilSetup",
+        "PolicyName": "S3Setup",
         "PolicyDocument": {
           "Version" : "2012-10-17",
           "Statement": [
@@ -445,7 +445,7 @@
         ],
         "Path": "/"
       },
-      "DependsOn": [ "iamrStd", "iampS3LmilSetup" ]
+      "DependsOn": [ "iamrStd", "iampS3Setup" ]
     },
 
     "subnetPublic": {
