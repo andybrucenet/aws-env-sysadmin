@@ -66,6 +66,35 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
         172.20.241.14 Centos
         ```
 <br />
+1. *Useful Stack Data Calls*. While the stack is building, you can login to each VM as it is created. You may be curious to see what metadata is passed in. Here are some examples:
+
+   * _General Metadata_. You can use:
+   
+       ```
+       curl http://169.254.169.254/latest/ && echo ''
+       ```
+       That returns all metadata available from the instance.
+   * _UserData._ The `UserData` is executed automatically by the launched VM (instance). We use it to kick-start the `cfn-init` process we discuss just below :)
+   
+       ```
+       curl http://169.254.169.254/latest/user-data && echo ''
+       ```
+     You will see the commands that the instance executes.
+   * _cfn-init._ The `cfn-init` processes permit you to drive policy (such as installed programs) directly from the CloudFormation template. In fact, you can add new commands / software to the running instance by simply modifying the `AWS::CloudFormation::Init` section of the CloudFormation template associated with the launched instance.
+
+     First, get the stack information (either from the AWS Console or by examining the `user-data` call above). For example:
+   
+       ```
+       [root@ip-172-20-197-4 data]# curl -s http://169.254.169.254/latest/user-data | grep cfn-init
+       /opt/aws/bin/cfn-init --stack aws-env-sysadmin --resource vmOob --region us-west-2
+       ```
+     The output above shows the stack ane region name. Now we can query CloudFormation to get the list of commands that will execute:
+   
+       ```
+       /opt/aws/bin/cfn-get-metadata --stack aws-env-sysadmin --resource vmOob --region us-west-2
+       ```
+     We cut the output from the above...but you will recognize it from the CloudFormation template submitted to AWS.
+<br />
 1. *Post-Process Stack - Windows Passwords*. We don't use any Chocolatey or Puppet - so get the passwords manually and save them to a file that `l.login` user can access.
 <br />
 1. *Post-Process Stack - OOB Node*. There are a number of steps which are too time-consuming / error-prone to automate.
