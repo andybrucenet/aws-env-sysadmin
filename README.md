@@ -65,7 +65,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
 
         ```
         DOCKER_OPTS="-v $(pwd -P):/local:ro -w /local" \
-          ./aws-env-sysadmin-stacks.py \
+          ./aws-env-sysadmin.py \
           --cmd `which aws-cli` \
           --option create \
           --region $AWS_REGION \
