@@ -55,17 +55,6 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
             $AWS_VPC_ID $AWS_PUBLIC_CIDR $AWS_VGW_ID $AWS_IGW_ID $AWS_PRIVATE_CIDR $AWS_KEYPAIR_NAME
         ```
         The above doesn't actually run the command; it simply outputs the proper command that needs to be updated.
-   * Get the list of IPs. We created a gnarly little script that gets this information directly from AWS; we provide a script for this to update `/etc/hosts`. Here's a sample run:
-
-        ```
-        $ ./aws-env-sysadmin-hosts.sh
-        172.20.241.4 Ubuntu
-        172.20.241.9 W2K12
-        172.20.197.4 Oob
-        172.20.241.6 W2K16
-        172.20.241.14 Centos
-        ```
-<br />
 1. *Useful Stack Data Calls*. While the stack is building, you can login to each VM as it is created. You may be curious to see what metadata is passed in. Here are some examples:
 
    * _General Metadata_. You can use:
@@ -98,6 +87,16 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
 1. *Post-Process Stack - Windows Passwords*. We don't use any Chocolatey or Puppet - so get the passwords manually and save them to a file that `l.login` user can access.
 <br />
 1. *Post-Process Stack - OOB Node*. There are a number of steps which are too time-consuming / error-prone to automate.
+   * Get the list of IPs. We created a gnarly little script that gets this information directly from AWS; we provide a script for this to update `/etc/hosts`. Here's a sample run:
+
+        ```
+        $ ./aws-env-sysadmin-hosts.sh
+        172.20.241.4 Ubuntu
+        172.20.241.9 W2K12
+        172.20.197.4 Oob
+        172.20.241.6 W2K16
+        172.20.241.14 Centos
+        ```
    * Set `l.login` password:
 
         ```
