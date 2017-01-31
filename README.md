@@ -88,7 +88,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
        [root@ip-172-20-197-4 data]# curl -s http://169.254.169.254/latest/user-data | grep cfn-init
        /opt/aws/bin/cfn-init --stack aws-env-sysadmin --resource vmOob --region us-west-2
        ```
-     The output above shows the stack ane region name. Now we can query CloudFormation to get the list of commands that will execute:
+     The output above shows the stack and region name. Now we can query CloudFormation to get the list of commands that will execute:
    
        ```
        /opt/aws/bin/cfn-get-metadata --stack aws-env-sysadmin --resource vmOob --region us-west-2
