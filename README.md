@@ -24,7 +24,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
    * Setup the variables to create the stack:
 
         ```
-        STACK_NAME='lmil-sysadmin-test'
+        STACK_NAME='aws-env-sysadmin'
         AWS_REGION='YOUR_REGION'
         AWS_VPC_NAME='YOUR_VPC'
         AWS_PUBLIC_CIDR='YOUR_PUBLIC_SUBNET'
