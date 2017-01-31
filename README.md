@@ -53,8 +53,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
         AWS_IGW_ID='igw-a3c6b4c6'
         ```
      And we should be ready to go with the above values.
-   * Create the stack. The following users our nifty Docker wrapper in conjunction with a python wrapper over the AWS cloudformation calls.
-     First, we need to compress the template - as it is, it is slightly above the 51,200 character limit imposed by AWS. We use a tool called `cfn-check` (see https://www.npmjs.com/package/cfn-check); this tool not only verifies AWS CloudFormation templates, it also *compresses* the output.
+   * Create the stack. First, we need to compress the template - as it is, it is slightly above the 51,200 character limit imposed by AWS. We use a tool called `cfn-check` (see https://www.npmjs.com/package/cfn-check); this tool not only verifies AWS CloudFormation templates, it also *compresses* the output.
 
         ```
         mkdir -p ./work
@@ -62,7 +61,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
           --compact ./cfn/aws-env-sysadmin.cfn \
           > ./work/aws-env-sysadmin.cfn
         ```
-        Now we can do the actual stack build using AWS CLI:
+        Next, we use our nifty Docker wrapper in conjunction with a python wrapper over the AWS cloudformation calls:
 
         ```
         DOCKER_OPTS="-v $(pwd -P):/local:ro -w /local" \
@@ -77,6 +76,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
           --override-values \
             $AWS_VPC_ID $AWS_PUBLIC_CIDR $AWS_VGW_ID $AWS_IGW_ID $AWS_PRIVATE_CIDR $AWS_KEYPAIR_NAME
         ```
+        The above doesn't actually run the command; it simply outputs the proper command that needs to be updated.
    * Get the list of IPs. We'll use the output from the below script to update `/etc/hosts`
 
         ```
