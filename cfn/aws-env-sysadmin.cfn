@@ -15,15 +15,15 @@
     },
     "InternalGatewayId": {
       "Description": "Internal gateway",
-      "Type": "String",
+      "Type": "String"
     },
     "InternetGatewayId": {
       "Description": "Internet gateway",
-      "Type": "String",
+      "Type": "String"
     },
     "PrivateCidrBlock": {
       "Description": "Private network CIDR (non-routable)",
-      "Type": "String",
+      "Type": "String"
     },
     "KeyName": {
       "Type": "AWS::EC2::KeyPair::KeyName",

@@ -48,8 +48,9 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
 
         ```
         mkdir -p ./work
-        cfn-check --compact ./cfn/aws-sysadmin-test-env.cfn \
-          > ./work/aws-sysadmin-test-env.cfn
+        DOCKER_OPTS="-v $(pwd -P):/local:ro -w /local" ~/bin/aws-helpers cfn-check \
+          --compact ./cfn/aws-env-sysadmin.cfn \
+          > ./work/aws-env-sysadmin.cfn
         ```
         Now we can do the actual stack build using AWS CLI:
 
