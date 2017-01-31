@@ -25,7 +25,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
      To load in the values, just `source` the script. Here's a sample run:
 
         ```
-        CloudraticSolutionsLLCs-MacBook-Pro:aws-env-sysadmin l.abruce$ source ~/aws-env-sysadmin.sh
+        CloudraticSolutionsLLCs-MacBook-Pro:aws-env-sysadmin l.abruce$ source ~/bin/aws-env-sysadmin.sh
         AWS_VPC_ID='vpc-d8d6d6bd'
         AWS_VGW_ID='vgw-32a07e2c'
         AWS_IGW_ID='igw-a3c6b4c6'
