@@ -30,7 +30,7 @@ The goal is to create a SysAdmin interview test lab on AWS. This test lab will c
         AWS_VGW_ID='vgw-32a07e2c'
         AWS_IGW_ID='igw-a3c6b4c6'
         ```
-     And we should be ready to go with the above values.
+     Remember: *your values will be different*. The above are valid for my environment.
    * Create the stack. First, we need to compress the template - as it is, it is slightly above the 51,200 character limit imposed by AWS. We use a tool called `cfn-check` (see https://www.npmjs.com/package/cfn-check); this tool not only verifies AWS CloudFormation templates, it also *compresses* the output.
 
         ```

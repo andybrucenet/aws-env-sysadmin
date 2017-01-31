@@ -406,17 +406,17 @@
             {
               "Effect": "Allow",
               "Action": [ "s3:*" ],
-              "Resource" : { "Fn::Join" : [ "", ["arn:aws:s3:::", "aws-env-sysadmin", ""]]}
+              "Resource" : { "Fn::Join" : [ "", ["arn:aws:s3:::", { "Ref": "AWS::StackName" }, ""]]}
             },
             {
               "Effect": "Allow",
               "Action": [ "s3:*" ],
-              "Resource" : { "Fn::Join" : [ "", ["arn:aws:s3:::", "aws-env-sysadmin", "/cisco-ios"]]}
+              "Resource" : { "Fn::Join" : [ "", ["arn:aws:s3:::", { "Ref": "AWS::StackName" }, "/cisco-ios"]]}
             },
             {
               "Effect": "Allow",
               "Action": [ "s3:*" ],
-              "Resource" : { "Fn::Join" : [ "", ["arn:aws:s3:::", "aws-env-sysadmin", "/cisco-ios/*"]]}
+              "Resource" : { "Fn::Join" : [ "", ["arn:aws:s3:::", { "Ref": "AWS::StackName" }, "/cisco-ios/*"]]}
             },
             {
               "Effect": "Allow",
